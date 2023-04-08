@@ -2,7 +2,7 @@ resource "aws_launch_template" "servers_privados" {
   name = var.launch_template_name_servidores_internos
 
   block_device_mappings {
-    device_name = "/dev/sdf"
+    device_name = var.device_name
 
     ebs {
       volume_size = 10
@@ -30,7 +30,7 @@ resource "aws_launch_template" "servers_privados" {
   vpc_security_group_ids = [aws_security_group.allow_tls.id]
 
   tag_specifications {
-    resource_type = "instance"
+    resource_type = var.resource_type
 
     tags = {
       Name = "servidores_internos"
@@ -39,7 +39,7 @@ resource "aws_launch_template" "servers_privados" {
 }
 
 resource "aws_autoscaling_group" "servidores_internos" {
-  name                = var.autoscalling_servers_privados
+  name                = var.autoscalling_servers_names[0]
   vpc_zone_identifier = [aws_subnet.privada_1.id, aws_subnet.privada_2.id, aws_subnet.privada_3.id]
   desired_capacity    = 1
   max_size            = 4
@@ -66,7 +66,7 @@ resource "aws_autoscaling_attachment" "alb_attachment" {
 resource "aws_autoscaling_policy" "policy_up_privado" {
   name                   = var.policy_up_name
   scaling_adjustment     = 1
-  adjustment_type        = "ChangeInCapacity"
+  adjustment_type        = var.adjustment_type
   autoscaling_group_name = aws_autoscaling_group.servidores_internos.name
   cooldown               = 100
 }
@@ -74,7 +74,7 @@ resource "aws_autoscaling_policy" "policy_up_privado" {
 resource "aws_autoscaling_policy" "policy_down_privado" {
   name                   = var.policy_down_name
   scaling_adjustment     = 1
-  adjustment_type        = "ChangeInCapacity"
+  adjustment_type        = var.adjustment_type
   autoscaling_group_name = aws_autoscaling_group.servidores_internos.name
   cooldown               = 100
 }

@@ -2,7 +2,7 @@ resource "aws_launch_template" "servers" {
   name = var.launch_template_name_firewall
 
   block_device_mappings {
-    device_name = "/dev/sdf"
+    device_name = var.device_name
 
     ebs {
       volume_size = 10
@@ -30,7 +30,7 @@ resource "aws_launch_template" "servers" {
   vpc_security_group_ids = [aws_security_group.allow_tls.id]
 
   tag_specifications {
-    resource_type = "instance"
+    resource_type = var.resource_type
 
     tags = {
       Name = "pfsense_firewall"
@@ -42,7 +42,7 @@ resource "aws_launch_template" "servers" {
 }
 
 resource "aws_autoscaling_group" "pfsense_firewall" {
-  name                = var.autoscalling_servers_publicos
+  name                = var.autoscalling_servers_names[1]
   vpc_zone_identifier = [aws_subnet.publica_1.id, aws_subnet.publica_2.id,aws_subnet.publica_3.id]
   desired_capacity    = 1
   max_size            = 4
@@ -69,7 +69,7 @@ resource "aws_autoscaling_attachment" "alb_attachment_publico" {
 resource "aws_autoscaling_policy" "policy_up_publico" {
   name                   = var.policy_up_name
   scaling_adjustment     = 1
-  adjustment_type        = "ChangeInCapacity"
+  adjustment_type        = var.adjustment_type
   autoscaling_group_name = aws_autoscaling_group.pfsense_firewall.name
   cooldown               = 100
 }
@@ -77,7 +77,7 @@ resource "aws_autoscaling_policy" "policy_up_publico" {
 resource "aws_autoscaling_policy" "policy_down_publico" {
   name                   = var.policy_down_name
   scaling_adjustment     = 1
-  adjustment_type        = "ChangeInCapacity"
+  adjustment_type        = var.adjustment_type
   autoscaling_group_name = aws_autoscaling_group.pfsense_firewall.name
   cooldown               = 100
 }

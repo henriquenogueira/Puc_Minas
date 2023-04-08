@@ -25,7 +25,7 @@ resource "tls_private_key" "ssh_ec2_pfsense" {
 }
 
 resource "aws_key_pair" "generated_key" {
-  key_name   = "pfsense"
+  key_name   = "servidores"
   public_key = tls_private_key.ssh_ec2_pfsense.public_key_openssh
 }
 

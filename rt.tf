@@ -2,12 +2,12 @@ resource "aws_route_table" "public" {
   vpc_id = aws_vpc.main.id
 
   route {
-    cidr_block = "0.0.0.0/24"
+    cidr_block = var.range_any
     gateway_id = aws_internet_gateway.gw.id
   }
 
   tags = {
-    Name = "rt_publica"
+    Name = var.rt_names[1]
   }
   depends_on = [aws_vpc.main]
 }
@@ -16,12 +16,12 @@ resource "aws_route_table" "rt_private" {
   vpc_id = aws_vpc.main.id
 
   route {
-    cidr_block = "0.0.0.0/0"
+    cidr_block = var.range_any
     gateway_id = aws_nat_gateway.nat_gtw.id
   }
 
   tags = {
-    Name = "rt_privada"
+    Name = var.rt_names[0]
   }
   depends_on = [aws_vpc.main]
 }
