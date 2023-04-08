@@ -1,7 +1,8 @@
 # puc-minas
 Infra estrutura em cloud híbrida de um escritório de advocacia.
 
-Terraform v1.4.4
+Terraform v1.4.4  
+
 Player de cloud Amazon Web Services
 
 Projeto de infraestrutura na cloud pública AWS
