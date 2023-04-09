@@ -5,11 +5,11 @@ resource "aws_lb" "lb_publico" {
   internal           = false
   load_balancer_type = var.type_lb
   security_groups    = [aws_security_group.allow_tls.id]
-  subnets            = [aws_subnet.publica_1.id, aws_subnet.publica_2.id, aws_subnet.publica_3.id]
+  subnets            = [aws_subnet.publica_1.id, aws_subnet.publica_2.id]
 
   enable_deletion_protection = false
   depends_on = [
-    aws_subnet.publica_1, aws_subnet.publica_2, aws_subnet.publica_3
+    aws_subnet.publica_1, aws_subnet.publica_2
   ]
 }
 
@@ -48,11 +48,11 @@ resource "aws_lb" "lb_privado" {
   internal           = true
   load_balancer_type = var.type_lb
   security_groups    = [aws_security_group.allow_tls.id]
-  subnets            = [aws_subnet.privada_1.id, aws_subnet.privada_2.id, aws_subnet.privada_3.id]
+  subnets            = [aws_subnet.privada_1.id, aws_subnet.privada_2.id]
 
   enable_deletion_protection = false
   depends_on = [
-    aws_subnet.privada_1, aws_subnet.privada_2, aws_subnet.privada_3
+    aws_subnet.privada_1, aws_subnet.privada_2
   ]
 }
 

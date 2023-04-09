@@ -40,7 +40,7 @@ resource "aws_launch_template" "servers_privados" {
 
 resource "aws_autoscaling_group" "servidores_internos" {
   name                = var.autoscalling_servers_names[0]
-  vpc_zone_identifier = [aws_subnet.privada_1.id, aws_subnet.privada_2.id, aws_subnet.privada_3.id]
+  vpc_zone_identifier = [aws_subnet.privada_1.id, aws_subnet.privada_2.id]
   desired_capacity    = 1
   max_size            = 4
   min_size            = 1

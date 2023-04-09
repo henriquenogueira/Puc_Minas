@@ -35,10 +35,6 @@ resource "aws_route_table_association" "private_2" {
   subnet_id      = aws_subnet.privada_2.id
   route_table_id = aws_route_table.rt_private.id
 }
-resource "aws_route_table_association" "private_3" {
-  subnet_id      = aws_subnet.privada_3.id
-  route_table_id = aws_route_table.rt_private.id
-}
 
 
 #### route table publica ####
@@ -48,9 +44,5 @@ resource "aws_route_table_association" "publica_1" {
 }
 resource "aws_route_table_association" "publica_2" {
   subnet_id      = aws_subnet.publica_2.id
-  route_table_id = aws_route_table.public.id
-}
-resource "aws_route_table_association" "publica_3" {
-  subnet_id      = aws_subnet.publica_3.id
   route_table_id = aws_route_table.public.id
 }

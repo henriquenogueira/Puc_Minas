@@ -43,7 +43,7 @@ resource "aws_launch_template" "servers" {
 
 resource "aws_autoscaling_group" "pfsense_firewall" {
   name                = var.autoscalling_servers_names[1]
-  vpc_zone_identifier = [aws_subnet.publica_1.id, aws_subnet.publica_2.id,aws_subnet.publica_3.id]
+  vpc_zone_identifier = [aws_subnet.publica_1.id, aws_subnet.publica_2.id]
   desired_capacity    = 1
   max_size            = 4
   min_size            = 1

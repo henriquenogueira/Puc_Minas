@@ -9,24 +9,24 @@ variable "instance_type" {
 variable "aws_zones" {
   type = list(string)
   default = [
-    "us-east-1a", "us-east-1b", "us-east-1c",
-     "us-east-1d", "us-east-1e", "us-east-1f"
+    "us-east-1a", "us-east-1b", 
+    "us-east-1c", "us-east-1d"
     ]
 }
 
 variable "aws_subnets_ranges" {
   type = list(string)
   default = [
-    "10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24",
-     "10.0.4.0/24", "10.0.5.0/24", "10.0.6.0/24"
+    "10.0.1.0/24", "10.0.2.0/24", 
+    "10.0.3.0/24", "10.0.4.0/24"
     ]
 }
 
 variable "aws_subnets_names" {
   type = list(string)
   default = [
-    "subnet_publica_1", "subnet_publica_2", "subnet_publica_3",
-     "subnet_privada_1", "subnet_privada_2", "subnet_privada_3"
+    "subnet_publica_1", "subnet_publica_2", 
+     "subnet_privada_1", "subnet_privada_2"
     ]
 }
 
