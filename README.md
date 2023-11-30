@@ -1,5 +1,7 @@
 **Infra estrutura em cloud híbrida de um escritório de advocacia.**
 
+**Projeto demonstrativo simples com integração de uma infra simples on-primise com a cloud(PUC)**
+
 **Informações do código e provedor utilizado.**
 * Terraform v1.4.4  
 * Amazon Web Services
